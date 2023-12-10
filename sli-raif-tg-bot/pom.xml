@@ -8,6 +8,7 @@
         <module>core</module>
         <module>notification</module>
         <module>api</module>
+        <module>statistics</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
