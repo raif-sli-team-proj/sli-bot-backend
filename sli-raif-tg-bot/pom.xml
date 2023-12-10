@@ -6,6 +6,7 @@
     <modules>
         <module>bot-app</module>
         <module>core</module>
+        <module>notification</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
