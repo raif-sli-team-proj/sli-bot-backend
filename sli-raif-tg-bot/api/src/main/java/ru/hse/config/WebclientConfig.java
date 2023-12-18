@@ -23,8 +23,6 @@ public class WebclientConfig {
         this.applicationConfig = applicationConfig;
     }
 
-    private static final String BASE_URL = "https://status.raiffeisen.ru/api/status/v1/products/";
-
     @Bean
     public WebClient webClientBean() {
         var httpClient = HttpClient.create()
@@ -35,7 +33,7 @@ public class WebclientConfig {
                                 .addHandlerLast(new WriteTimeoutHandler(applicationConfig.getWriteTimeout(), TimeUnit.MILLISECONDS)));
 
         return WebClient.builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(applicationConfig.getBaseUrl())
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
