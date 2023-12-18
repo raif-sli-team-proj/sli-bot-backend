@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import ru.hse.dto.ServiceDTO;
 import ru.hse.service.StatusService;
+import ru.hse.dto.ServiceDTO;
 
 import java.util.List;
 
