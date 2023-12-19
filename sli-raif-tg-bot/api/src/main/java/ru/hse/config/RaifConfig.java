@@ -3,10 +3,12 @@ package ru.hse.config;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource(value = "classpath:api.properties")
 @Getter
-public class ApplicationConfig {
+public class RaifConfig {
 
     @Value("${raiffeisen-status.base-url}")
     private String baseUrl;

@@ -17,23 +17,23 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class WebclientConfig {
 
-    private final ApplicationConfig applicationConfig;
+    private final RaifConfig raifConfig;
 
-    public WebclientConfig(ApplicationConfig applicationConfig) {
-        this.applicationConfig = applicationConfig;
+    public WebclientConfig(RaifConfig raifConfig) {
+        this.raifConfig = raifConfig;
     }
 
     @Bean
     public WebClient webClientBean() {
         var httpClient = HttpClient.create()
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, applicationConfig.getConnectTimeout())
-                .responseTimeout(Duration.ofMillis(applicationConfig.getResponseTimeout()))
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, raifConfig.getConnectTimeout())
+                .responseTimeout(Duration.ofMillis(raifConfig.getResponseTimeout()))
                 .doOnConnected(conn ->
-                        conn.addHandlerLast(new ReadTimeoutHandler(applicationConfig.getReadTimeout(), TimeUnit.MILLISECONDS))
-                                .addHandlerLast(new WriteTimeoutHandler(applicationConfig.getWriteTimeout(), TimeUnit.MILLISECONDS)));
+                        conn.addHandlerLast(new ReadTimeoutHandler(raifConfig.getReadTimeout(), TimeUnit.MILLISECONDS))
+                                .addHandlerLast(new WriteTimeoutHandler(raifConfig.getWriteTimeout(), TimeUnit.MILLISECONDS)));
 
         return WebClient.builder()
-                .baseUrl(applicationConfig.getBaseUrl())
+                .baseUrl(raifConfig.getBaseUrl())
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
