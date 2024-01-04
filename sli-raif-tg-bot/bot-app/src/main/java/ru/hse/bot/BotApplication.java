@@ -1,9 +1,9 @@
-package ru.hse;
+package ru.hse.bot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "ru.hse")
+@SpringBootApplication(scanBasePackages = "ru.hse.api")
 public class BotApplication {
 
     public static void main(String[] args) {

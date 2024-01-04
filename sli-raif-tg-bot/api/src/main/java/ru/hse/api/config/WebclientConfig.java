@@ -1,4 +1,4 @@
-package ru.hse.config;
+package ru.hse.api.config;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;

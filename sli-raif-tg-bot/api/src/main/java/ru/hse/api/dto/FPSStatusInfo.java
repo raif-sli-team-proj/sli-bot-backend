@@ -1,4 +1,4 @@
-package ru.hse.dto;
+package ru.hse.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,14 +9,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Service {
+public class FPSStatusInfo {
     private String externalId;
 
     private String name;
 
     private String description;
 
-    private List<Status> statuses;
+    private List<Service> services;
 
     // неизвестно какого типа объект
     private Object sli;

@@ -1,4 +1,4 @@
-package ru.hse.configurtion;
+package ru.hse.bot.configurtion;
 
 import java.util.Collections;
 import java.util.List;

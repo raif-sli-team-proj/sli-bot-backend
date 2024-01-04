@@ -1,4 +1,4 @@
-package ru.hse.bot;
+package ru.hse.bot.telegram;
 
 import java.util.ArrayList;
 import java.util.List;
