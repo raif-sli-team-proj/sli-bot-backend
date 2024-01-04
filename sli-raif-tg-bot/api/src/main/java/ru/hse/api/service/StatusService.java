@@ -1,10 +1,10 @@
-package ru.hse.service;
+package ru.hse.api.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import ru.hse.dto.FPSStatusInfo;
-import ru.hse.dto.ServiceDTO;
+import ru.hse.api.dto.FPSStatusInfo;
+import ru.hse.api.dto.ServiceDTO;
 
 import java.util.List;
 

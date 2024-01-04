@@ -1,4 +1,4 @@
-package ru.hse.dto;
+package ru.hse.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

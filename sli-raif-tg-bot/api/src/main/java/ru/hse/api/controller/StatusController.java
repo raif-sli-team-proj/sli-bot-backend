@@ -1,11 +1,11 @@
-package ru.hse.controller;
+package ru.hse.api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import ru.hse.service.StatusService;
-import ru.hse.dto.ServiceDTO;
+import ru.hse.api.service.StatusService;
+import ru.hse.api.dto.ServiceDTO;
 
 import java.util.List;
 

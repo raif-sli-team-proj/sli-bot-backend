@@ -1,4 +1,4 @@
-package ru.hse.config;
+package ru.hse.api.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
