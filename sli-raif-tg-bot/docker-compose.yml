@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  postgres-database:
+    image: postgres:14.5
+
+    environment:
+      POSTGRES_DB: "BOT_DB"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "bot_postgres"
+    #      PGDATA: "/var/lib/postgresql/data/pgdata-guides"
+    #    volumes:
+    #      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+      #    volumes:
+      #      - ./postgres/data:/var/lib/postgresql/data
+      #      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
