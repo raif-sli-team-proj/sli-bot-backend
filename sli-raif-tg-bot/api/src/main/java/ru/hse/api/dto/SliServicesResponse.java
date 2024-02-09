@@ -1,6 +1,6 @@
 package ru.hse.api.dto;
 
-import java.util.List;
+import java.util.Set;
 
-public record SliServicesResponse(List<String> services) {
+public record SliServicesResponse(Set<String> services) {
 }
