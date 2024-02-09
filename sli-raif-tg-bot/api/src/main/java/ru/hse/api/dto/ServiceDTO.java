@@ -13,4 +13,5 @@ public class ServiceDTO {
     private String serviceName;
 
     private List<Status> statuses;
+    private Double sli = 1.0;
 }
