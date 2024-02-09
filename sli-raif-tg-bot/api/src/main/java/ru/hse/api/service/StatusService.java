@@ -25,7 +25,7 @@ public class StatusService {
                 .bodyToMono(FPSStatusInfo.class)
                 .map(value ->
                     value.getServices().stream()
-                            .map(service -> new ServiceDTO(service.getName(), service.getStatuses()))
+                            .map(service -> new ServiceDTO(service.getName(), service.getStatuses(), 1.0))
                             .toList()
                 );
     }
