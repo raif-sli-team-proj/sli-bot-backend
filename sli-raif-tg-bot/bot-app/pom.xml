@@ -33,19 +33,19 @@
             <groupId>ru.hse</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>implementation</scope>
         </dependency>
         <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>notification</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>implementation</scope>
         </dependency>
         <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>statistics</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>implementation</scope>
         </dependency>
     </dependencies>
 
