@@ -3,14 +3,14 @@ package ru.hse.statistics.service;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.hse.statistics.repository.ServiceStatusRepository;
 import ru.hse.statistics.repository.entity.ServiceStatus;
 
 @Service
-@AllArgsConstructor
-public class ServiceStatusService {
+@RequiredArgsConstructor
+public class StatusService {
     private final ServiceStatusRepository serviceStatusRepository;
 
     public void addCurrentStatuses() {
