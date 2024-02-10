@@ -15,8 +15,9 @@ public class ServiceStatusService {
 
     public void addCurrentStatuses() {
         var e = new ServiceStatus();
-        e.setServiceName("test");
-        e.setStatus(ServiceStatus.Status.UNKNOWN);
+        e.setServiceName("FPS");
+        e.setEndpointName("QRC");
+        e.setStatus(ServiceStatus.Status.OK);
         e.setAddDate(OffsetDateTime.now(ZoneOffset.UTC));
 
         serviceStatusRepository.save(e);
