@@ -27,6 +27,6 @@ public class IncidentJobConfig {
 
     @Bean(name = "incidentJobTrigger")
     public SimpleTriggerFactoryBean triggerMemberStats(@Qualifier("incidentJobDetail") JobDetail jobDetail) {
-        return triggerFactory.createTrigger(jobDetail, 60000, "Incident job Trigger");
+        return triggerFactory.createTrigger(jobDetail, 5 * 60 * 1000, "Incident job Trigger");
     }
 }

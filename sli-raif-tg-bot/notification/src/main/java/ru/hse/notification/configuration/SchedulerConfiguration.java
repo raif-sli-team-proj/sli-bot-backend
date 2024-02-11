@@ -7,6 +7,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.Trigger;
 import org.quartz.spi.JobFactory;
@@ -51,8 +52,10 @@ public class SchedulerConfiguration {
         Scheduler scheduler = schedulerFactory.getScheduler();
         scheduler.setJobFactory(jobFactory);
 //        schedulerFactory.setTriggers(incidentJobTrigger);
-        scheduler.scheduleJob((JobDetail) incidentJobTrigger.getJobDataMap().get("jobDetail"), incidentJobTrigger);
-
+        var jobDetail = (JobDetail) incidentJobTrigger.getJobDataMap().get("jobDetail");
+        if (!scheduler.checkExists(jobDetail.getKey())) {
+            scheduler.scheduleJob(jobDetail, incidentJobTrigger);
+        }
         scheduler.start();
         return scheduler;
     }

@@ -17,10 +17,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
@@ -37,14 +33,20 @@
             <groupId>ru.hse</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>implementation</scope>
         </dependency>
         <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>notification</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>implementation</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>ru.hse</groupId>-->
+<!--            <artifactId>statistics</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--            <scope>implementation</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
     <properties>
