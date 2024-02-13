@@ -25,11 +25,6 @@
             <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.telegram</groupId>
-            <artifactId>telegrambots-spring-boot-starter</artifactId>
-            <version>6.8.0</version>
-        </dependency>
-        <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -41,12 +36,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>implementation</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>ru.hse</groupId>-->
-<!--            <artifactId>statistics</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--            <scope>implementation</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>ru.hse</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>implementation</scope>
+        </dependency>
     </dependencies>
 
     <properties>

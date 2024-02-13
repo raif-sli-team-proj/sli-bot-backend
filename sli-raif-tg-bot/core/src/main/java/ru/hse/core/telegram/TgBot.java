@@ -1,8 +1,9 @@
-package ru.hse.bot.telegram;
+package ru.hse.core.telegram;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+@Slf4j
 @Component
 public class TgBot extends TelegramLongPollingBot {
 
@@ -40,6 +42,10 @@ public class TgBot extends TelegramLongPollingBot {
                     sendError("Incoming message is empty", msgIn.getChatId());
                     System.out.println("Incoming message is empty");
                     return;
+                }
+                if (msgIn.getText().equals("/info")) {
+                    var msg = new SendMessage(Long.toString(msgIn.getChatId()), "Your chat id: " + msgIn.getChatId());
+                    execute(msg);
                 }
                 if (!msgIn.getText().equals("/start")) {
                     System.out.println("received unknown method " + msgIn.getText());
@@ -94,5 +100,13 @@ public class TgBot extends TelegramLongPollingBot {
         }
     }
 
+    public void sendMessage(String chatId, String message)  {
+        var msg = new SendMessage(chatId, message);
+        try {
+            execute(msg);
+        } catch (TelegramApiException err) {
+            log.error("Message was not sent&", err);
+        }
+    }
 
 }

@@ -1,4 +1,4 @@
-package ru.hse.bot.configurtion;
+package ru.hse.core.configuration;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.generics.LongPollingBot;
@@ -16,6 +17,7 @@ import org.telegram.telegrambots.starter.TelegramBotInitializer;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Configuration
+@PropertySource(value = "classpath:core.properties")
 public class TgConfiguration {
 
     @Value("${telegram.bot.token}")
