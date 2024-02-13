@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Setter;
+import ru.hse.statistics.model.Status;
 
 @Entity
 @Table(name = "service_status")
@@ -28,10 +29,4 @@ public class ServiceStatus {
     private Status status;
     @Column(name = "add_date")
     private OffsetDateTime addDate;
-
-    public enum Status {
-        OK,
-        FAIL,
-        UNKNOWN
-    }
 }
