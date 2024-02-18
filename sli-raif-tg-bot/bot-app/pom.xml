@@ -8,7 +8,25 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <artifactId>bot-app</artifactId>
     <dependencies>
@@ -28,19 +46,21 @@
             <groupId>ru.hse</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>implementation</scope>
         </dependency>
         <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>notification</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>implementation</scope>
         </dependency>
         <dependency>
             <groupId>ru.hse</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>implementation</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.hse</groupId>
+            <artifactId>statistics</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
