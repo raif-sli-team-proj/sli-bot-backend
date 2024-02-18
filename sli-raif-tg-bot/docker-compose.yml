@@ -22,7 +22,7 @@ services:
       - "5051:80"
 
   bot-app:
-    image: strawberrybomb1/bot-app:v2.0
+    image: strawberrybomb1/bot-app:prod
     ports:
       - "5050:8080"
     depends_on:
