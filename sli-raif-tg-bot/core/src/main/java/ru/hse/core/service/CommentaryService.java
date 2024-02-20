@@ -20,10 +20,12 @@ public class CommentaryService {
     }
 
     public void addCommentary(CommentaryDTO commentaryDTO) {
+        // FIXME: производительность?
         var incident = incidentRepository.findById(commentaryDTO.getIncidentId());
         if (incident.isPresent()) {
             var commentary = new Commentary(commentaryDTO.getUserId(), commentaryDTO.getContents(), incident.get());
             commentaryRepository.save(commentary);
+            incidentRepository.updateStatus(commentaryDTO.getNewIncidentStatus());
             return;
         }
 
