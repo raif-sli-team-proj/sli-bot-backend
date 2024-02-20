@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Commentary {
 
+    public Commentary(String userId, String contents, Incident incidentId) {
+        this.userId = userId;
+        this.contents = contents;
+        this.incidentId = incidentId;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
