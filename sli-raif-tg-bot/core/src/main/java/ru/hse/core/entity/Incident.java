@@ -2,6 +2,7 @@ package ru.hse.core.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.hse.core.enums.IncidentStatus;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,16 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "incident")
 @Data
+@NoArgsConstructor
 public class Incident {
+
+    public Incident(String serviceName, IncidentStatus incidentStatus,
+                    LocalDateTime incidentStartTime, LocalDateTime incidentEndTime) {
+        this.serviceName = serviceName;
+        this.incidentStatus = incidentStatus;
+        this.incidentStartTime = incidentStartTime;
+        this.incidentEndTime = incidentEndTime;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

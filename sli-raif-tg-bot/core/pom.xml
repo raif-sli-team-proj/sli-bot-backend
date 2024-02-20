@@ -24,6 +24,12 @@
             <version>6.8.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>ru.hse</groupId>
+            <artifactId>statistics</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>implementation</scope>
+        </dependency>
     </dependencies>
 
     <properties>
