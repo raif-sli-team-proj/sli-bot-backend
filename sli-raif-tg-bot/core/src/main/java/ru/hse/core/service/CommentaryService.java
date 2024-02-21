@@ -25,7 +25,7 @@ public class CommentaryService {
         if (incident.isPresent()) {
             var commentary = new Commentary(commentaryDTO.getUserId(), commentaryDTO.getContents(), incident.get());
             commentaryRepository.save(commentary);
-            incidentRepository.updateStatus(commentaryDTO.getNewIncidentStatus());
+            incidentRepository.updateStatus(commentaryDTO.getNewIncidentStatus(), incident.get().getIncidentId());
             return;
         }
 

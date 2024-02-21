@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.hse.core.entity.Incident;
 import ru.hse.core.enums.IncidentStatus;
 
@@ -11,6 +12,7 @@ import ru.hse.core.enums.IncidentStatus;
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
 
     @Modifying
-    @Query("update Incident i set i.incidentStatus = ?1")
-    void updateStatus(IncidentStatus incidentStatus);
+    @Transactional
+    @Query("update Incident i set i.incidentStatus = ?1 where i.incidentId = ?2")
+    void updateStatus(IncidentStatus incidentStatus, Long id);
 }

@@ -11,7 +11,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         "ru.hse.bot",
         "ru.hse.notification"
 })
-@EntityScan("ru.hse.statistics.repository.entity")
+@EntityScan(value = {
+        "ru.hse.statistics.repository.entity",
+        "ru.hse.core.entity"
+})
 public class BotApplication {
 
     public static void main(String[] args) {
