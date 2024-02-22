@@ -33,6 +33,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>ru.hse</groupId>
+            <artifactId>notification</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>implementation</scope>
+        </dependency>
     </dependencies>
 
 </project>
