@@ -11,7 +11,7 @@ create table incident
     incident_end_time TIMESTAMP
 );
 
-create table commentary
+create table comment
 (
     id BIGSERIAL PRIMARY KEY,
     user_id TEXT,

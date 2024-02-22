@@ -4,7 +4,7 @@ import lombok.Data;
 import ru.hse.core.enums.IncidentStatus;
 
 @Data
-public class CommentaryDTO {
+public class CommentDTO {
     private String userId;
 
     private String contents;

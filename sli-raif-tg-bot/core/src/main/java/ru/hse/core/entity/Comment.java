@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "commentary")
+@Table(name = "comment")
 @Data
 @NoArgsConstructor
-public class Commentary {
+public class Comment {
 
-    public Commentary(String userId, String contents, Incident incidentId) {
+    public Comment(String userId, String contents, Incident incidentId) {
         this.userId = userId;
         this.contents = contents;
         this.incidentId = incidentId;
