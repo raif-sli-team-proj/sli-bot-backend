@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.hse.core.dto.CommentDTO;
 import ru.hse.core.entity.Comment;
+import ru.hse.core.enums.IncidentStatus;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.core.repository.IncidentRepository;
 
@@ -22,6 +23,10 @@ public class CommentService {
             var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get());
             commentRepository.save(commentary);
             incidentRepository.updateStatus(commentDTO.getNewIncidentStatus(), incident.get().getIncidentId());
+
+            if (commentDTO.getNewIncidentStatus() == IncidentStatus.RESOLVED) {
+                incidentRepository.updateEndTime(incident.get().getIncidentId());
+            }
             return;
         }
 
