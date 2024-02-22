@@ -5,8 +5,8 @@
 create table incident
 (
     incident_id BIGSERIAL PRIMARY KEY,
-    service_name VARCHAR(30),
-    incident_status VARCHAR(15),
+    service_name VARCHAR(30) NOT NULL,
+    incident_status VARCHAR(15) NOT NULL,
     incident_start_time TIMESTAMP,
     incident_end_time TIMESTAMP
 );
