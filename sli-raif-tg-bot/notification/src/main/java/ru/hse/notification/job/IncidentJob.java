@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
-import ru.hse.notification.service.IncidentService;
+import ru.hse.core.service.IncidentService;
 
 @Slf4j
 @Component
