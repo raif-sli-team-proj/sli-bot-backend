@@ -6,3 +6,6 @@ create table admin
 (
     user_id VARCHAR(50) PRIMARY KEY
 );
+
+insert into admin(user_id)
+values ('admin');
