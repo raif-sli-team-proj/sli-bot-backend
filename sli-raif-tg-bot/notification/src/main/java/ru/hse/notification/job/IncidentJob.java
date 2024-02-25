@@ -39,5 +39,6 @@ public class IncidentJob implements Job {
             incidentService.saveIncident("QRC", IncidentStatus.REPORTED, LocalDateTime.now(), null);
         }
         statusService.addStatus(status);
+        log.info("Incident job end.");
     }
 }
