@@ -2,6 +2,7 @@ package ru.hse.core.telegram;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,10 @@ public class TgBot extends TelegramLongPollingBot {
         } catch (TelegramApiException err) {
             log.error("Message was not sent&", err);
         }
+    }
+
+    public void sendMessages(Set<String> chatIds, String message) {
+        chatIds.forEach(id -> sendMessage(id, message));
     }
 
 }
