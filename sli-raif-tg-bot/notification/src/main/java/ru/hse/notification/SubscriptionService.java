@@ -1,5 +1,8 @@
 package ru.hse.notification;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.hse.notification.repository.SubscriptionRepository;
@@ -17,5 +20,9 @@ public class SubscriptionService {
             s.setChatId(tgChatId);
             subscriptionRepository.save(s);
         }
+    }
+
+    public Set<Subscription> getAllSubscriptions() {
+        return new HashSet<>(subscriptionRepository.findAll());
     }
 }
