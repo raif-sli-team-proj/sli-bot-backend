@@ -5,10 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.hse.core.dto.CommentDTO;
+import ru.hse.core.dto.CommentResponseDTO;
 import ru.hse.core.entity.Comment;
 import ru.hse.core.enums.IncidentStatus;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.core.repository.IncidentRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +33,26 @@ public class CommentService {
             return;
         }
 
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
+    }
+
+    public List<CommentResponseDTO> getCommentsByService(String id) {
+        long longId;
+        try {
+            longId = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incorrect path variables. Integers expected.");
+        }
+
+        var incident = incidentRepository.findById(longId);
+
+        if (incident.isPresent()) {
+            return commentRepository
+                    .findAllByIncidentId(incident.get())
+                    .stream()
+                    .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(), longId))
+                    .toList();
+        }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
     }
 }
