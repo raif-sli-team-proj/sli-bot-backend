@@ -23,4 +23,11 @@ public class IncidentController {
                                              @PathVariable("pageSize") String pageSize) {
         return incidentService.getPageOfIncidents(pageNumber, pageSize);
     }
+
+    @GetMapping("{serviceName}/{pageNumber}/{pageSize}")
+    public List<Incident> getIncidentsPaging(@PathVariable("serviceName") String serviceName,
+                                             @PathVariable("pageNumber") String pageNumber,
+                                             @PathVariable("pageSize") String pageSize) {
+        return incidentService.getPageOfIncidentsByService(serviceName, pageNumber, pageSize);
+    }
 }
