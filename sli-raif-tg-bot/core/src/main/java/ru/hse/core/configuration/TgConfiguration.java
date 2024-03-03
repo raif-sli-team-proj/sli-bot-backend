@@ -26,6 +26,9 @@ public class TgConfiguration {
     @Value("${telegram.miniapp.url}")
     private String miniAppUrl;
 
+    @Value("${telegram.miniapp.message.url}")
+    private String miniAppMessageUrl;
+
     @Bean
     public String botToken() {
         return tgBotToken;
@@ -34,6 +37,11 @@ public class TgConfiguration {
     @Bean
     public String miniAppUrl() {
         return miniAppUrl;
+    }
+
+    @Bean
+    public String miniAppMessageUrl() {
+        return miniAppMessageUrl;
     }
 
     @Bean
