@@ -8,6 +8,7 @@ import ru.hse.core.dto.CommentDTO;
 import ru.hse.core.dto.CommentResponseDTO;
 import ru.hse.core.entity.Comment;
 import ru.hse.core.enums.IncidentStatus;
+import ru.hse.core.repository.AdminRepository;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.core.repository.IncidentRepository;
 
@@ -20,8 +21,11 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final IncidentRepository incidentRepository;
+    private final AdminRepository adminRepository;
 
     public Long addCommentary(CommentDTO commentDTO) {
+        adminCheck(commentDTO);
+
         var incident = incidentRepository.findById(commentDTO.getIncidentId());
         if (incident.isPresent()) {
             var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get(), LocalDateTime.now());
@@ -56,5 +60,11 @@ public class CommentService {
                     .toList();
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
+    }
+
+    private void adminCheck(CommentDTO commentDTO) {
+        if (!adminRepository.existsById(commentDTO.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Forbidden");
+        }
     }
 }
