@@ -16,8 +16,8 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public void addComment(@RequestBody CommentDTO commentDTO) {
-        commentService.addCommentary(commentDTO);
+    public Long addComment(@RequestBody CommentDTO commentDTO) {
+        return commentService.addCommentary(commentDTO);
     }
 
     @GetMapping("{incidentId}")

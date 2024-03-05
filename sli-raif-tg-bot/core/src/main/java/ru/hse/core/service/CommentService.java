@@ -20,7 +20,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final IncidentRepository incidentRepository;
 
-    public void addCommentary(CommentDTO commentDTO) {
+    public Long addCommentary(CommentDTO commentDTO) {
         var incident = incidentRepository.findById(commentDTO.getIncidentId());
         if (incident.isPresent()) {
             var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get());
@@ -30,7 +30,7 @@ public class CommentService {
             if (commentDTO.getNewIncidentStatus() == IncidentStatus.RESOLVED) {
                 incidentRepository.updateEndTime(incident.get().getIncidentId());
             }
-            return;
+            return commentary.getId();
         }
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
