@@ -9,3 +9,9 @@ create table admin
 
 insert into admin(user_id)
 values ('admin');
+insert into admin(user_id)
+values ('becausedafedya');
+insert into admin(user_id)
+values ('asminimulin');
+insert into admin(user_id)
+values ('lulu_fw01');

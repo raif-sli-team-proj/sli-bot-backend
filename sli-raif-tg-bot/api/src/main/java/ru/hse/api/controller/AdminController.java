@@ -14,7 +14,7 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    @GetMapping("{userId}")
+    @GetMapping("check/{userId}")
     public Boolean checkIfUserIsAdmin(@PathVariable("userId") String userId) {
         return adminService.checkIfUserIsAdmin(userId);
     }
