@@ -25,4 +25,6 @@ public interface IncidentRepository extends JpaRepository<Incident, Long> {
     void updateEndTime(@Param("id") Long id);
 
     Page<Incident> findAllBy(Pageable pageable);
+
+    Page<Incident> findAllByServiceName(String serviceName, Pageable pageable);
 }

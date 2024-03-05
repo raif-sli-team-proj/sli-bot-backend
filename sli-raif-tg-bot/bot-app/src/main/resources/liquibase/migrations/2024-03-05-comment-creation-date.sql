@@ -1,0 +1,2 @@
+ALTER TABLE comment
+ADD COLUMN creation_date TIMESTAMP;

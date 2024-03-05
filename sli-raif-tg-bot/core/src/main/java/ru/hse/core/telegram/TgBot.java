@@ -1,7 +1,7 @@
 package ru.hse.core.telegram;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,17 @@ public class TgBot extends TelegramLongPollingBot {
     private final String tgBotToken;
 
     private final String miniAppUrl;
+    private final String miniAppMessageUrl;
 
     @Autowired
-    public TgBot(@Qualifier("botToken") String botToken, @Qualifier("miniAppUrl") String miniAppUrl) {
+    public TgBot(
+            @Qualifier("botToken") String botToken,
+            @Qualifier("miniAppUrl") String miniAppUrl,
+            @Qualifier("miniAppMessageUrl") String miniAppMessageUrl) {
         super(botToken);
         tgBotToken = botToken;
         this.miniAppUrl = miniAppUrl;
+        this.miniAppMessageUrl = miniAppMessageUrl;
     }
 
     @Override
@@ -47,12 +52,9 @@ public class TgBot extends TelegramLongPollingBot {
                     var msg = new SendMessage(Long.toString(msgIn.getChatId()), "Your chat id: " + msgIn.getChatId());
                     execute(msg);
                 }
-                if (!msgIn.getText().equals("/start")) {
-                    System.out.println("received unknown method " + msgIn.getText());
-                    sendError("Only /start supported", msgIn.getChatId());
-                    return;
+                if (msgIn.getText().equals("/start")) {
+                    sendStartMiniAppButton(msgIn.getChatId(), msgIn.getChat().isUserChat());
                 }
-                sendStartMiniAppButton(msgIn.getChatId());
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -79,18 +81,20 @@ public class TgBot extends TelegramLongPollingBot {
         execute(msg);
     }
 
-    private void sendStartMiniAppButton(long chatId) {
-        var miniAppInfo = new WebAppInfo(this.miniAppUrl);
-        var inlineButton = new InlineKeyboardButton("Open Mini App");
-        inlineButton.setWebApp(miniAppInfo);
-
-        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>(1);
-        keyboard.add(List.of(inlineButton));
-
-        var message = new SendMessage();
+    private void sendStartMiniAppButton(long chatId, boolean isPrivateChat) {
+        SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Go!");
-        message.setReplyMarkup(new InlineKeyboardMarkup(keyboard));
+        if (isPrivateChat) {
+            var inlineButton = new InlineKeyboardButton("Open Mini App");
+            inlineButton.setWebApp(new WebAppInfo(this.miniAppUrl));
+
+            List<List<InlineKeyboardButton>> keyboard = List.of(List.of(inlineButton));
+
+            message.setText("Go!");
+            message.setReplyMarkup(new InlineKeyboardMarkup(keyboard));
+        } else {
+            message.setText(miniAppMessageUrl);
+        }
 
         try {
             execute(message);
@@ -107,6 +111,10 @@ public class TgBot extends TelegramLongPollingBot {
         } catch (TelegramApiException err) {
             log.error("Message was not sent&", err);
         }
+    }
+
+    public void sendMessages(Set<String> chatIds, String message) {
+        chatIds.forEach(id -> sendMessage(id, message));
     }
 
 }
