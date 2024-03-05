@@ -11,6 +11,7 @@ import ru.hse.core.enums.IncidentStatus;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.core.repository.IncidentRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class CommentService {
     public Long addCommentary(CommentDTO commentDTO) {
         var incident = incidentRepository.findById(commentDTO.getIncidentId());
         if (incident.isPresent()) {
-            var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get());
+            var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get(), LocalDateTime.now());
             commentRepository.save(commentary);
             incidentRepository.updateStatus(commentDTO.getNewIncidentStatus(), incident.get().getIncidentId());
 
@@ -50,7 +51,8 @@ public class CommentService {
             return commentRepository
                     .findAllByIncidentId(incident.get())
                     .stream()
-                    .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(), longId, incident.get().getIncidentStatus()))
+                    .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(),
+                            longId, incident.get().getIncidentStatus(), x.getCreationDate()))
                     .toList();
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");

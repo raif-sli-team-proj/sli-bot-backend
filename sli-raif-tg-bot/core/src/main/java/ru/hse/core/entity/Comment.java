@@ -4,16 +4,19 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "comment")
 @Data
 @NoArgsConstructor
 public class Comment {
 
-    public Comment(String userId, String contents, Incident incidentId) {
+    public Comment(String userId, String contents, Incident incidentId, LocalDateTime localDateTime) {
         this.userId = userId;
         this.contents = contents;
         this.incidentId = incidentId;
+        this.creationDate = localDateTime;
     }
 
     @Id
@@ -29,4 +32,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "incident_id", referencedColumnName = "incident_id")
     private Incident incidentId;
+
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
 }
