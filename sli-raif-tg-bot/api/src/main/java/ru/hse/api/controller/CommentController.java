@@ -21,7 +21,7 @@ public class CommentController {
     }
 
     @GetMapping("{incidentId}")
-    public List<CommentResponseDTO> getCommentsByService(@PathVariable("incidentId") String id) {
-        return commentService.getCommentsByService(id);
+    public List<CommentResponseDTO> getCommentsByIncidentId(@PathVariable("incidentId") String id) {
+        return commentService.getCommentsByIncidentId(id);
     }
 }

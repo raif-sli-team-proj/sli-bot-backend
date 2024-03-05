@@ -36,7 +36,7 @@ public class CommentService {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
     }
 
-    public List<CommentResponseDTO> getCommentsByService(String id) {
+    public List<CommentResponseDTO> getCommentsByIncidentId(String id) {
         long longId;
         try {
             longId = Long.parseLong(id);
@@ -50,7 +50,7 @@ public class CommentService {
             return commentRepository
                     .findAllByIncidentId(incident.get())
                     .stream()
-                    .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(), longId))
+                    .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(), longId, incident.get().getIncidentStatus()))
                     .toList();
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
