@@ -28,7 +28,7 @@ public class CommentService {
 
         var incident = incidentRepository.findById(commentDTO.getIncidentId());
         if (incident.isPresent()) {
-            var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get(), LocalDateTime.now());
+            var commentary = new Comment(commentDTO.getUserId(), commentDTO.getContents(), incident.get(), LocalDateTime.now(), commentDTO.getNewIncidentStatus());
             commentRepository.save(commentary);
             incidentRepository.updateStatus(commentDTO.getNewIncidentStatus(), incident.get().getIncidentId());
 
@@ -56,7 +56,7 @@ public class CommentService {
                     .findAllByIncidentId(incident.get())
                     .stream()
                     .map(x -> new CommentResponseDTO(x.getId(), x.getUserId(), x.getContents(),
-                            longId, incident.get().getIncidentStatus(), x.getCreationDate()))
+                            longId, x.getNewIncidentStatus(), x.getCreationDate()))
                     .toList();
         }
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");

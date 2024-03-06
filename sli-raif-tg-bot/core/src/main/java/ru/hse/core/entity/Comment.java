@@ -3,6 +3,7 @@ package ru.hse.core.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.hse.core.enums.IncidentStatus;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +13,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Comment {
 
-    public Comment(String userId, String contents, Incident incidentId, LocalDateTime localDateTime) {
+    public Comment(String userId, String contents, Incident incidentId, LocalDateTime localDateTime, IncidentStatus newIncidentStatus) {
         this.userId = userId;
         this.contents = contents;
         this.incidentId = incidentId;
         this.creationDate = localDateTime;
+        this.newIncidentStatus = newIncidentStatus;
     }
 
     @Id
@@ -35,4 +37,7 @@ public class Comment {
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
+    @Column(name = "new_incident_status")
+    private IncidentStatus newIncidentStatus;
 }
