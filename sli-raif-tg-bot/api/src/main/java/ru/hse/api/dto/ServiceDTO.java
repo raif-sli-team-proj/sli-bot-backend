@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ServiceDTO {
+    private String serviceId;
     private String serviceName;
 
     private List<Status> statuses;
