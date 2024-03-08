@@ -25,4 +25,8 @@ public class SubscriptionService {
     public Set<Subscription> getAllSubscriptions() {
         return new HashSet<>(subscriptionRepository.findAll());
     }
+
+    public boolean isSubscribed(String tgChatId) {
+        return !subscriptionRepository.findSubscriptionsByChatId(tgChatId).isEmpty();
+    }
 }
