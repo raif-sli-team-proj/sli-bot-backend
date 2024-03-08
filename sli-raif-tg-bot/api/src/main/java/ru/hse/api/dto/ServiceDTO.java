@@ -14,4 +14,5 @@ public class ServiceDTO {
 
     private List<Status> statuses;
     private Double sli = 1.0;
+    private Status currentStatus;
 }
