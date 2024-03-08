@@ -18,7 +18,7 @@ public class StatusController {
     private final RaifStatusService statusService;
 
     @GetMapping
-    public Mono<List<ServiceDTO>> getStatus() {
-        return statusService.getFPSServiceStatuses();
+    public List<ServiceDTO> getStatus() {
+        return statusService.getFpsServicesStatuses();
     }
 }
