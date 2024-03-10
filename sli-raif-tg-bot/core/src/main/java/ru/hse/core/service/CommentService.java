@@ -11,7 +11,7 @@ import ru.hse.statistics.model.IncidentStatus;
 import ru.hse.core.repository.AdminRepository;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.statistics.repository.IncidentRepository;
-import ru.hse.core.telegram.TgBot;
+import ru.hse.notification.telegram.TgBot;
 import ru.hse.notification.SubscriptionService;
 import ru.hse.notification.repository.entity.Subscription;
 

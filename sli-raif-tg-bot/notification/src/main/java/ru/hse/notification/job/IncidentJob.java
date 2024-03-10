@@ -11,7 +11,7 @@ import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
 import ru.hse.statistics.model.IncidentStatus;
 import ru.hse.statistics.service.IncidentService;
-import ru.hse.core.telegram.TgBot;
+import ru.hse.notification.telegram.TgBot;
 import ru.hse.notification.SubscriptionService;
 import ru.hse.notification.repository.entity.Subscription;
 import ru.hse.statistics.model.Status;
