@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.hse.api.dto.SubscribeRequest;
 import ru.hse.api.dto.SubscriptionResponse;
-import ru.hse.notification.SubscriptionService;
+import ru.hse.core.service.SubscriptionService;
 
 @RestController
 @RequestMapping("api/v1/subscription")

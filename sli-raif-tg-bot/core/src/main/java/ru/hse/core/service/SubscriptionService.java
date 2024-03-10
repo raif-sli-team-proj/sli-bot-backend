@@ -1,12 +1,12 @@
-package ru.hse.notification;
+package ru.hse.core.service;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.hse.notification.repository.SubscriptionRepository;
-import ru.hse.notification.repository.entity.Subscription;
+import ru.hse.core.repository.SubscriptionRepository;
+import ru.hse.core.repository.entity.Subscription;
 
 @Service
 @RequiredArgsConstructor

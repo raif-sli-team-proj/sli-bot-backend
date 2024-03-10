@@ -1,4 +1,4 @@
-package ru.hse.notification.repository.entity;
+package ru.hse.core.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
