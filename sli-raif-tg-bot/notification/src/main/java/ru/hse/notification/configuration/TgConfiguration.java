@@ -1,4 +1,4 @@
-package ru.hse.core.configuration;
+package ru.hse.notification.configuration;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.telegram.telegrambots.starter.TelegramBotInitializer;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Configuration
-@PropertySource(value = "classpath:core.properties")
+@PropertySource(value = "classpath:notification.properties")
 public class TgConfiguration {
 
     @Value("${telegram.bot.token}")
