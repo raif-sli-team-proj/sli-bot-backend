@@ -11,9 +11,14 @@ import ru.hse.core.enums.IncidentStatus;
 import ru.hse.core.repository.AdminRepository;
 import ru.hse.core.repository.CommentRepository;
 import ru.hse.core.repository.IncidentRepository;
+import ru.hse.core.telegram.TgBot;
+import ru.hse.notification.SubscriptionService;
+import ru.hse.notification.repository.entity.Subscription;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +27,8 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final IncidentRepository incidentRepository;
     private final AdminRepository adminRepository;
+    private final TgBot tgBot;
+    private final SubscriptionService subscriptionService;
 
     public Long addCommentary(CommentDTO commentDTO) {
         adminCheck(commentDTO);
@@ -35,6 +42,12 @@ public class CommentService {
             if (commentDTO.getNewIncidentStatus() == IncidentStatus.RESOLVED) {
                 incidentRepository.updateEndTime(incident.get().getIncidentId());
             }
+
+            Set<String> chats = subscriptionService.getAllSubscriptions().stream()
+                    .map(Subscription::getChatId)
+                    .collect(Collectors.toSet());
+            tgBot.sendMessages(chats, "❌❌❌ QRC service failed.");
+
             return commentary.getId();
         }
 
