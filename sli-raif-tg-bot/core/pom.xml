@@ -31,6 +31,12 @@
             <scope>implementation</scope>
         </dependency>
         <dependency>
+            <groupId>ru.hse</groupId>
+            <artifactId>notification</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>implementation</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
