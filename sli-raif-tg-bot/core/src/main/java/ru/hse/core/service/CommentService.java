@@ -43,15 +43,21 @@ public class CommentService {
                 incidentRepository.updateEndTime(incident.get().getIncidentId());
             }
 
-            Set<String> chats = subscriptionService.getAllSubscriptions().stream()
-                    .map(Subscription::getChatId)
-                    .collect(Collectors.toSet());
-            tgBot.sendMessages(chats, "❌❌❌ QRC service failed.");
+            commentNotify(commentDTO);
 
             return commentary.getId();
         }
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
+    }
+
+    private void commentNotify(CommentDTO commentDTO) {
+        Set<String> chats = subscriptionService.getAllSubscriptions().stream()
+                .map(Subscription::getChatId)
+                .collect(Collectors.toSet());
+        tgBot.sendMessages(chats, "New comment.\n" +
+                String.format("%s: %s", commentDTO.getUserId(), commentDTO.getContents()) + '\n' +
+                String.format("Status: %s", commentDTO.getNewIncidentStatus().toString()));
     }
 
     public List<CommentResponseDTO> getCommentsByIncidentId(String id) {
