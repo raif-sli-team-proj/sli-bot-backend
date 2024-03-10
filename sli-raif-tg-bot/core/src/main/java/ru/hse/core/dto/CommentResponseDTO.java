@@ -2,7 +2,7 @@ package ru.hse.core.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.hse.core.enums.IncidentStatus;
+import ru.hse.statistics.model.IncidentStatus;
 
 import java.time.LocalDateTime;
 

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.hse.core.entity.Incident;
-import ru.hse.core.service.IncidentService;
+import ru.hse.statistics.repository.entity.Incident;
+import ru.hse.statistics.service.IncidentService;
 
 import java.util.List;
 

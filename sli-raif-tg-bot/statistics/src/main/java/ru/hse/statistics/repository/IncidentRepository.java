@@ -1,4 +1,4 @@
-package ru.hse.core.repository;
+package ru.hse.statistics.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.hse.core.entity.Incident;
-import ru.hse.core.enums.IncidentStatus;
+import ru.hse.statistics.repository.entity.Incident;
+import ru.hse.statistics.model.IncidentStatus;
 
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
