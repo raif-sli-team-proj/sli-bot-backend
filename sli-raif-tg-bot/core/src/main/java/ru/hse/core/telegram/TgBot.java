@@ -93,7 +93,7 @@ public class TgBot extends TelegramLongPollingBot {
             message.setText("Go!");
             message.setReplyMarkup(new InlineKeyboardMarkup(keyboard));
         } else {
-            message.setText(miniAppMessageUrl);
+            message.setText(miniAppMessageUrl + chatId);
         }
 
         try {
