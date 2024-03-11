@@ -1,4 +1,4 @@
-package ru.hse.core.service;
+package ru.hse.statistics.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,9 +8,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.hse.core.entity.Incident;
-import ru.hse.core.enums.IncidentStatus;
-import ru.hse.core.repository.IncidentRepository;
+import ru.hse.statistics.repository.entity.Incident;
+import ru.hse.statistics.model.IncidentStatus;
+import ru.hse.statistics.repository.IncidentRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

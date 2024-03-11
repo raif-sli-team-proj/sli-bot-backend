@@ -7,13 +7,18 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.hse.core.dto.CommentDTO;
 import ru.hse.core.dto.CommentResponseDTO;
 import ru.hse.core.entity.Comment;
-import ru.hse.core.enums.IncidentStatus;
+import ru.hse.statistics.model.IncidentStatus;
 import ru.hse.core.repository.AdminRepository;
 import ru.hse.core.repository.CommentRepository;
-import ru.hse.core.repository.IncidentRepository;
+import ru.hse.statistics.repository.IncidentRepository;
+import ru.hse.notification.telegram.TgBot;
+import ru.hse.notification.SubscriptionService;
+import ru.hse.notification.repository.entity.Subscription;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +27,8 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final IncidentRepository incidentRepository;
     private final AdminRepository adminRepository;
+    private final TgBot tgBot;
+    private final SubscriptionService subscriptionService;
 
     public Long addCommentary(CommentDTO commentDTO) {
         adminCheck(commentDTO);
@@ -35,10 +42,22 @@ public class CommentService {
             if (commentDTO.getNewIncidentStatus() == IncidentStatus.RESOLVED) {
                 incidentRepository.updateEndTime(incident.get().getIncidentId());
             }
+
+            commentNotify(commentDTO);
+
             return commentary.getId();
         }
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incident does not exist by the given id");
+    }
+
+    private void commentNotify(CommentDTO commentDTO) {
+        Set<String> chats = subscriptionService.getAllSubscriptions().stream()
+                .map(Subscription::getChatId)
+                .collect(Collectors.toSet());
+        tgBot.sendMessages(chats, "Новый комментарий от пользователя" + String.format("%s: ", commentDTO.getUserId()) +
+                String.format("%s", commentDTO.getContents()) + '\n' +
+                String.format("Статус: %s", commentDTO.getNewIncidentStatus().toString()));
     }
 
     public List<CommentResponseDTO> getCommentsByIncidentId(String id) {

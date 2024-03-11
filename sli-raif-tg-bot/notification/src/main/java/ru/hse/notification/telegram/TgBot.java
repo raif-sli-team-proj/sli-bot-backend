@@ -1,4 +1,4 @@
-package ru.hse.core.telegram;
+package ru.hse.notification.telegram;
 
 import java.util.List;
 import java.util.Set;

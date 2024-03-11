@@ -1,9 +1,9 @@
-package ru.hse.core.entity;
+package ru.hse.statistics.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.hse.core.enums.IncidentStatus;
+import ru.hse.statistics.model.IncidentStatus;
 
 import java.time.LocalDateTime;
 
