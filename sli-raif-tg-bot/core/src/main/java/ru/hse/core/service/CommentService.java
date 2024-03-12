@@ -55,7 +55,7 @@ public class CommentService {
         Set<String> chats = subscriptionService.getAllSubscriptions().stream()
                 .map(Subscription::getChatId)
                 .collect(Collectors.toSet());
-        tgBot.sendMessages(chats, "Новый комментарий от пользователя" + String.format("%s: ", commentDTO.getUserId()) +
+        tgBot.sendMessages(chats, "Новый комментарий от пользователя " + String.format("%s: ", commentDTO.getUserId()) +
                 String.format("%s", commentDTO.getContents()) + '\n' +
                 String.format("Статус: %s", commentDTO.getNewIncidentStatus().toString()));
     }
