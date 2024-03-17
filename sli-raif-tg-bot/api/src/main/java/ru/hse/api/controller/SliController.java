@@ -28,6 +28,6 @@ public class SliController {
             @PathVariable String service,
             @RequestParam String frame
     ) {
-        return new GetSliResponse(sliService.getServiceSliForMonth(service, frame), service, frame);
+        return new GetSliResponse(sliService.getServiceSli(service, frame), service, frame);
     }
 }

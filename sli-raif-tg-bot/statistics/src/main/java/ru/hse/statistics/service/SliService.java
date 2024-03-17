@@ -20,7 +20,7 @@ public class SliService {
 
     private final ServiceStatusRepository serviceStatusRepository;
 
-    public List<SliMetric> getServiceSliForMonth(String serviceName, String frame) {
+    public List<SliMetric> getServiceSli(String serviceName, String frame) {
         OffsetDateTime thirtyDaysAgo = OffsetDateTime.now(ZoneOffset.UTC).minusDays(30);
 
         List<ServiceStatus> statuses = serviceStatusRepository.findAllStatusesAfter(serviceName,
