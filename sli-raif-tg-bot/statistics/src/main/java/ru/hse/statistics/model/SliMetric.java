@@ -1,4 +1,4 @@
-package ru.hse.api.dto;
+package ru.hse.statistics.model;
 
 import java.time.LocalDateTime;
 
