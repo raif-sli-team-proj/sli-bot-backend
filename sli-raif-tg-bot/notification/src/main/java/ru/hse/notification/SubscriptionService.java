@@ -5,6 +5,7 @@ import java.util.Set;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.hse.notification.repository.SubscriptionRepository;
 import ru.hse.notification.repository.entity.Subscription;
 
@@ -20,6 +21,11 @@ public class SubscriptionService {
             s.setChatId(tgChatId);
             subscriptionRepository.save(s);
         }
+    }
+
+    @Transactional
+    public void removeSubscription(String chatId) {
+        subscriptionRepository.deleteByChatId(chatId);
     }
 
     public Set<Subscription> getAllSubscriptions() {
