@@ -45,16 +45,18 @@ public class IncidentJob implements Job {
         // Сохраняем статусы.
         statusService.addStatuses(serviceToStatus);
 
-        Set<String> chats = subscriptionService.getAllSubscriptions().stream()
-                .map(Subscription::getChatId)
-                .collect(Collectors.toSet());
-        // Отправляем уведомления об упавших сервисах, создаем инциденты.
-        failedServices.forEach((key, value) -> {
-            String serviceName = key.service;
-            log.info(String.format("%s service failed.", serviceName));
-            bot.sendMessages(chats, String.format("❌❌❌ %s service failed.", serviceName));
-            incidentService.saveIncident(serviceName, IncidentStatus.REPORTED, LocalDateTime.now(), null);
-        });
+        if (!failedServices.isEmpty()) {
+            Set<String> chats = subscriptionService.getAllSubscriptions().stream()
+                    .map(Subscription::getChatId)
+                    .collect(Collectors.toSet());
+            // Отправляем уведомления об упавших сервисах, создаем инциденты.
+            failedServices.forEach((key, value) -> {
+                String serviceName = key.service;
+                log.info(String.format("%s service failed.", serviceName));
+                bot.sendMessages(chats, String.format("❌❌❌ %s service failed.", serviceName));
+                incidentService.saveIncident(serviceName, IncidentStatus.REPORTED, LocalDateTime.now(), null);
+            });
+        }
         log.info("Incident job end.");
     }
 }
