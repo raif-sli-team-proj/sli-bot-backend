@@ -22,8 +22,8 @@ public enum RaifProduct {
      * */
     DCC("dcc");
 
-    final String name;
+    public final String productName;
     RaifProduct(String product) {
-        this.name = product;
+        this.productName = product;
     }
 }
