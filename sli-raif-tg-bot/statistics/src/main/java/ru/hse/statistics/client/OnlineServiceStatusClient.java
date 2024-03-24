@@ -11,7 +11,7 @@ import ru.hse.statistics.model.ProductOnlineStatusesResponse;
 public class OnlineServiceStatusClient {
     private final WebClient webClient;
 
-    public ProductOnlineStatusesResponse getOnlineStatus(RaifProduct product) {
+    public ProductOnlineStatusesResponse getOnlineStatusesByProduct(RaifProduct product) {
         return webClient
                 .get()
                 .uri(String.format("/%s/online", product.productName))
