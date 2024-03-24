@@ -33,16 +33,6 @@ public class StatusService {
         };
     }
 
-    public void addStatus(Status status) {
-        var e = new ServiceStatus();
-        e.setProductName("FPS");
-        e.setServiceName("QRC");
-        e.setStatus(status);
-        e.setAddDate(OffsetDateTime.now(ZoneOffset.UTC));
-
-        serviceStatusRepository.save(e);
-    }
-
     @Transactional
     public void addStatus(RaifService service, Status status) {
         serviceStatusRepository.save(

@@ -10,13 +10,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Setter;
 import ru.hse.statistics.model.Status;
 
 @Entity
 @Table(name = "service_status")
-@Setter
+@AllArgsConstructor
 @Builder
 public class ServiceStatus {
     @Id
@@ -33,6 +33,5 @@ public class ServiceStatus {
     private OffsetDateTime addDate;
 
     public ServiceStatus() {
-
     }
 }
