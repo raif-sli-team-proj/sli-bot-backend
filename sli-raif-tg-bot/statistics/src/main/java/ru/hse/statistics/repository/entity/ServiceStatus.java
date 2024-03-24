@@ -10,23 +10,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Setter;
 import ru.hse.statistics.model.Status;
 
 @Entity
 @Table(name = "service_status")
 @Setter
+@Builder
 public class ServiceStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "service_name")
-    private String serviceName;
+    private String productName;
     @Column(name = "endpoint_name")
-    private String endpointName;
+    private String serviceName;
     @Enumerated(EnumType.STRING)
     private Status status;
     @Column(name = "add_date")
     private OffsetDateTime addDate;
+
+    public ServiceStatus() {
+
+    }
 }
