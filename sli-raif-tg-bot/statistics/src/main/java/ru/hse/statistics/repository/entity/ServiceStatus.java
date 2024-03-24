@@ -12,12 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import ru.hse.statistics.model.Status;
 
 @Entity
 @Table(name = "service_status")
 @AllArgsConstructor
 @Builder
+@Getter
 public class ServiceStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
