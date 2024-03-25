@@ -1,19 +1,12 @@
 package ru.hse.api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ServiceDTO {
-    private String serviceId;
-    private String serviceName;
-
-    private List<Status> statuses;
-    private Double sli = 1.0;
-    private Status currentStatus;
+public record ServiceDto(
+        String serviceId,
+        String serviceName,
+        List<StatusDto> statuses,
+        Double sli,
+        StatusDto currentStatus
+) {
 }

@@ -3,6 +3,7 @@ package ru.hse.api.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.hse.api.dto.raif.RaifServiceDto;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class FPSStatusInfo {
 
     private String description;
 
-    private List<Service> services;
+    private List<RaifServiceDto> raifServices;
 
     // неизвестно какого типа объект
     private Object sli;
