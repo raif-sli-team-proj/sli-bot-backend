@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.hse.statistics.enumeration.RaifService;
 import ru.hse.statistics.model.SliMetric;
 import ru.hse.statistics.model.Status;
 import ru.hse.statistics.repository.ServiceStatusRepository;
@@ -37,8 +38,30 @@ public class SliService {
         };
     }
 
+    /**
+     * Посчитать Sli для сервисов за 30 дней.
+     */
+    public Map<RaifService, SliMetric> countSliForServices() {
+        List<ServiceStatus> statuses = getStatusesFor30Days();
+        Map<RaifService, List<ServiceStatus>> serviceToStatuses = statuses.stream()
+                .collect(Collectors.groupingBy(s -> RaifService.of(s.getProductName(), s.getServiceName())));
+
+        return serviceToStatuses.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> new SliMetric(countSli(e.getValue()), null)
+                ));
+    }
+
+    private List<ServiceStatus> getStatusesFor30Days() {
+        OffsetDateTime thirtyDaysAgo = OffsetDateTime.now(ZoneOffset.UTC).minusDays(30);
+
+        return serviceStatusRepository.findAllStatusesAfter(
+                OffsetDateTime.from(thirtyDaysAgo));
+    }
+
     private List<SliMetric> getSliForHours(List<ServiceStatus> statuses) {
-       var result = statuses.stream()
+        var result = statuses.stream()
                 .collect(Collectors.groupingBy(status ->
                                 status.getAddDate().withMinute(0).withSecond(0).withNano(0),
                         Collectors.collectingAndThen(Collectors.toList(), this::countSli)));
