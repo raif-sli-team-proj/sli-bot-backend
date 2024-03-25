@@ -18,6 +18,6 @@ public class StatusController {
 
     @GetMapping
     public List<ServiceDto> getStatus() {
-        return statusService.getFpsServicesStatuses();
+        return statusService.getAllServiceStatuses();
     }
 }
