@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import ru.hse.statistics.model.Status;
 
 @Entity
@@ -20,6 +21,7 @@ import ru.hse.statistics.model.Status;
 @AllArgsConstructor
 @Builder
 @Getter
+@Setter
 public class ServiceStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
