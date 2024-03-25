@@ -8,6 +8,6 @@ import ru.hse.api.dto.StatusDto;
 public record RaifServiceDto(
         String externalId,
         String name,
-        List<StatusDto> statusDtos
+        List<StatusDto> statuses
 ) {
 }
