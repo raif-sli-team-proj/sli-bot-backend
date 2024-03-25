@@ -5,8 +5,8 @@ import java.util.List;
 public record ServiceDto(
         String serviceId,
         String serviceName,
-        List<Status> statuses,
+        List<StatusDto> statuses,
         Double sli,
-        Status currentStatus
+        StatusDto currentStatus
 ) {
 }
