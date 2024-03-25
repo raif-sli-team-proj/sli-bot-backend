@@ -14,4 +14,7 @@ public interface ServiceStatusRepository extends JpaRepository<ServiceStatus, Lo
     @Query("select ss from ServiceStatus ss where ss.serviceName" +
             " = :name and ss.addDate > :dateTime")
     List<ServiceStatus> findAllStatusesAfter(String name, OffsetDateTime dateTime);
+
+    @Query("select ss from ServiceStatus ss where ss.addDate > :dateTime")
+    List<ServiceStatus> findAllStatusesAfter(OffsetDateTime dateTime);
 }
