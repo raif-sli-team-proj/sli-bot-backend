@@ -34,9 +34,7 @@ public class IncidentJob implements Job {
     public void execute(JobExecutionContext arg0) {
         log.info("Incident job start.");
 
-        List<RaifProduct> products = List.of(RaifProduct.values());
-        Map<RaifService, Status> serviceToStatus = new HashMap<>();
-        products.forEach(p -> serviceToStatus.putAll(statusService.getProductServiceStatuses(p)));
+        Map<RaifService, Status> serviceToStatus = statusService.getAllServiceStatuses();
 
         Map<RaifService, Status> failedServices = serviceToStatus.entrySet().stream()
                 .filter(e -> e.getValue() == Status.FAIL)

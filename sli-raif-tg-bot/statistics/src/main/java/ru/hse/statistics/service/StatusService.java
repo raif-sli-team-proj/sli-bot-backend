@@ -2,6 +2,7 @@ package ru.hse.statistics.service;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -78,5 +79,15 @@ public class StatusService {
                     default -> Status.UNKNOWN;
                 }
         ));
+    }
+
+    /**
+     * Получить онлайн статусы всех сервисов.
+     * */
+    public Map<RaifService, Status> getAllServiceStatuses() {
+        List<RaifProduct> products = List.of(RaifProduct.values());
+        Map<RaifService, Status> serviceToStatus = new HashMap<>();
+        products.forEach(p -> serviceToStatus.putAll(getProductServiceStatuses(p)));
+        return serviceToStatus;
     }
 }
