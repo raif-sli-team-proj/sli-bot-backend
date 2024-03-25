@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
-import ru.hse.api.dto.ServiceDTO;
+import ru.hse.api.dto.ServiceDto;
 import ru.hse.api.service.RaifStatusService;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class StatusController {
     private final RaifStatusService statusService;
 
     @GetMapping
-    public List<ServiceDTO> getStatus() {
+    public List<ServiceDto> getStatus() {
         return statusService.getFpsServicesStatuses();
     }
 }
