@@ -11,7 +11,7 @@ import ru.hse.statistics.repository.entity.ServiceStatus;
 @Repository
 public interface ServiceStatusRepository extends JpaRepository<ServiceStatus, Long> {
 
-    @Query("select ss from ServiceStatus ss where ss.endpointName" +
+    @Query("select ss from ServiceStatus ss where ss.serviceName" +
             " = :name and ss.addDate > :dateTime")
     List<ServiceStatus> findAllStatusesAfter(String name, OffsetDateTime dateTime);
 }
