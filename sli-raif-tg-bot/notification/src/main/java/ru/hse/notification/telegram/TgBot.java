@@ -38,14 +38,13 @@ public class TgBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         try {
-            System.out.println("Processing update");
-
             if (update.hasMessage()) {
-                System.out.println("Processing message");
+                log.info("Processing message.");
                 var msgIn = update.getMessage();
                 if (!msgIn.hasText()) {
-                    sendError("Incoming message is empty", msgIn.getChatId());
-                    System.out.println("Incoming message is empty");
+                    log.info("Incoming message is empty.");
+                    var msg = new SendMessage(Long.toString(msgIn.getChatId()), "/start");
+                    execute(msg);
                     return;
                 }
                 if (msgIn.getText().equals("/info")) {
@@ -57,7 +56,7 @@ public class TgBot extends TelegramLongPollingBot {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            log.error("Error handling message", e);
         }
     }
 

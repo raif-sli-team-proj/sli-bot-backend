@@ -1,8 +1,6 @@
 package ru.hse.notification.job;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
-import ru.hse.statistics.enumeration.RaifProduct;
 import ru.hse.statistics.enumeration.RaifService;
 import ru.hse.statistics.model.IncidentStatus;
 import ru.hse.statistics.service.IncidentService;
@@ -49,10 +46,9 @@ public class IncidentJob implements Job {
                     .collect(Collectors.toSet());
             // Отправляем уведомления об упавших сервисах, создаем инциденты.
             failedServices.forEach((key, value) -> {
-                String serviceName = key.service;
-                log.info(String.format("%s service failed.", serviceName));
-                bot.sendMessages(chats, String.format("❌❌❌ %s service failed.", serviceName));
-                incidentService.saveIncident(serviceName, IncidentStatus.REPORTED, LocalDateTime.now(), null);
+                log.info(String.format("%s service failed.", key.service));
+                bot.sendMessages(chats, String.format("❌ сервис «%s» упал.", key.name));
+                incidentService.saveIncident(key.service, IncidentStatus.REPORTED, LocalDateTime.now(), null);
             });
         }
         log.info("Incident job end.");
