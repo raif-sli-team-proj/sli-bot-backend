@@ -28,4 +28,14 @@ class AdminServiceTest {
         assertTrue(isAdmin);
     }
 
+    @Test
+    public void whenUserIsNotAdmin_thenReturnsFalse() {
+        String normalUserId = "normalUser";
+        when(adminRepository.existsById(normalUserId)).thenReturn(false);
+
+        Boolean isAdmin = adminService.checkIfUserIsAdmin(normalUserId);
+
+        assertFalse(isAdmin);
+    }
+
 }
