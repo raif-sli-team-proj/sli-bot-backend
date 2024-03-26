@@ -3,18 +3,20 @@ package ru.hse.statistics.enumeration;
 import java.util.stream.Stream;
 
 public enum RaifService {
-    QRC("FPS", "QRC"),
-    PAYMENTS_PROCESSING("acdc", "payments_processing"),
-    RECEIPTS_SERVICE("fiscal", "receipts-service"),
-    PAYMENTS("POS", "Payments"),
-    OPERATIONS("dcc", "operations");
+    QRC("FPS", "QRC", "Регистрация QR"),
+    PAYMENTS_PROCESSING("acdc", "payments_processing", "Внесение ДС"),
+    RECEIPTS_SERVICE("fiscal", "receipts-service", "Управление чеками"),
+    PAYMENTS("POS", "Payments", "Проведение платежей"),
+    OPERATIONS("dcc", "operations", "Получение списка операций");
 
     public final String product;
     public final String service;
+    public final String name;
 
-    RaifService(String product, String service) {
+    RaifService(String product, String service, String name) {
         this.product = product;
         this.service = service;
+        this.name = name;
     }
 
     public static RaifService of(String product, String service) {

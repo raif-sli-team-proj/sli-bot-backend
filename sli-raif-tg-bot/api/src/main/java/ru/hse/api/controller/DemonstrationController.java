@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +44,7 @@ public class DemonstrationController {
         Set<String> chats = subscriptionService.getAllSubscriptions().stream()
                 .map(Subscription::getChatId)
                 .collect(Collectors.toSet());
-        bot.sendMessages(chats, String.format("❌❌❌ %s service failed.", rndService.service));
+        bot.sendMessages(chats, String.format("❌ сервис «%s» упал.", rndService.name));
         incidentService.saveIncident(
                 rndService.service,
                 IncidentStatus.REPORTED,
