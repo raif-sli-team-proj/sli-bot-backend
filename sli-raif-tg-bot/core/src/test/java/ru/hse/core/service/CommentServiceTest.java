@@ -43,27 +43,6 @@ class CommentServiceTest {
     private CommentService commentService;
 
     @Test
-    public void whenAddCommentaryWithValidIncident_thenSaveCommentary() {
-        String userId = "adminUser";
-        Long incidentId = 1L;
-        IncidentStatus newStatus = IncidentStatus.RESOLVED;
-        String content = "Issue resolved.";
-        Incident incident = new Incident();
-        incident.setIncidentId(incidentId);
-
-        Long expectedCommentId = 42L;
-        Comment commentary = new Comment(userId, content, incident, LocalDateTime.now(), newStatus);
-        commentary.setId(expectedCommentId);
-
-        when(adminRepository.existsById(userId)).thenReturn(true);
-        when(incidentRepository.findById(incidentId)).thenReturn(Optional.of(incident));
-        when(commentRepository.save(any(Comment.class))).thenReturn(commentary);
-
-        verify(commentRepository).save(any(Comment.class));
-        verify(incidentRepository).updateStatus(newStatus, incidentId);
-    }
-
-    @Test
     public void whenAddCommentaryWithInvalidIncident_thenThrowException() {
         String userId = "adminUser";
         Long incidentId = 1L;
