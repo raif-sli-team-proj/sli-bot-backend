@@ -3,7 +3,7 @@ package ru.hse.api.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.hse.api.client.RaifClient;
-import ru.hse.api.dto.ServiceDto;
+import ru.hse.api.dto.ServiceDTO;
 import ru.hse.api.dto.StatusDto;
 
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class RaifStatusService {
     private final StatusService statusService;
     private final SliService sliService;
 
-    public List<ServiceDto> getAllServiceStatuses() {
+    public List<ServiceDTO> getAllServiceStatuses() {
         Map<RaifService, RaifServiceDto> serviceToDto = new HashMap<>();
         raifStatusClient.getAllProductsInfo().forEach(p -> {
                     Map<RaifService, RaifServiceDto> services = p.services().stream()
@@ -42,7 +42,7 @@ public class RaifStatusService {
         Map<RaifService, Status> serviceToOnlineStatus = statusService.getAllServiceStatuses();
         Map<RaifService, SliMetric> serviceToSli = sliService.countSliForServices();
         return serviceToDto.entrySet().stream()
-                .map(s -> new ServiceDto(
+                .map(s -> new ServiceDTO(
                         s.getValue().externalId(),
                         s.getValue().name(),
                         s.getValue().statuses(),
