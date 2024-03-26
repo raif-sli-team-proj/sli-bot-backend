@@ -23,5 +23,7 @@ class IncidentServiceTest {
     public void testParsingPathVariables() {
         assertThrows(ResponseStatusException.class,
                 () -> incidentService.getPageOfIncidents("sfkas", "fasf"));
+        assertThrows(ResponseStatusException.class,
+                () -> incidentService.getPageOfIncidentsByService("QRC", "sfkas", "fasf"));
     }
 }
