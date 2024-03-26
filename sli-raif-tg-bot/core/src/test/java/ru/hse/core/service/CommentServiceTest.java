@@ -5,6 +5,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.server.ResponseStatusException;
 import ru.hse.core.dto.CommentDTO;
 import ru.hse.core.entity.Comment;
 import ru.hse.core.repository.AdminRepository;
@@ -61,5 +63,22 @@ class CommentServiceTest {
         verify(incidentRepository).updateStatus(newStatus, incidentId);
     }
 
+    @Test
+    public void whenAddCommentaryWithInvalidIncident_thenThrowException() {
+        String userId = "adminUser";
+        Long incidentId = 1L;
+        IncidentStatus newStatus = IncidentStatus.RESOLVED;
+        CommentDTO commentDTO = new CommentDTO(userId, "Issue resolved.", incidentId, newStatus);
 
+        when(adminRepository.existsById(userId)).thenReturn(true);
+        when(incidentRepository.findById(incidentId)).thenReturn(Optional.empty());
+
+        ResponseStatusException thrown = assertThrows(
+                ResponseStatusException.class,
+                () -> commentService.addCommentary(commentDTO),
+                "Expected addCommentary to throw, but it didn't"
+        );
+
+        assertSame(thrown.getStatusCode(), HttpStatusCode.valueOf(400));
+    }
 }
